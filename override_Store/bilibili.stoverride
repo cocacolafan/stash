@@ -25,6 +25,13 @@ http:
     - ^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/(Flash|ListFlash) - reject-dict
 
   script:
+    # ～ BiliBili_哔哩哔哩_1080P高码率+4K画质[番剧和影视除外]@ddgksf2013
+    - match: ^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo\?
+      name: bilibili_json_30
+      type: response
+      timeout: 30
+      require-body: true
+      max-size: 3145728
     # ～ BiliBili_哔哩哔哩_屏蔽首页右上活动@ddgksf2013
     - match: ^https?:\/\/app\.bilibili\.com\/x\/resource\/top\/activity
       name: bilibili_json_31
@@ -112,6 +119,9 @@ http:
     - "upos-hz-mirrorakam.akamaized.net"
 
 script-providers:
+  bilibili_json_30:
+    url: https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
+    interval: 86400
   bilibili_json_31:
     url: https://github.com/ddgksf2013/Scripts/raw/master/bilibili_json.js
     interval: 86400
